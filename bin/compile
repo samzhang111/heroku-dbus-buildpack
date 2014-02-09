@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+
+#config variables
+DBUS_DIR = "/app/dbus-lib"
+
+#fail fast
+set -e
+
+#extract dbus
+tar xf "/app/dbus-1.8.0.tar.gz"
+
+mkdir DBUS_DIR
+cd dbus-1.8.0
+
+./configure --prefix=DBUS_DIR
+make
+make install
+
+cd ..
+rm -rf dbus-1.8.0
+
+cd /app/dbus-python-0.84.0
+
+./configure
+make
+make install
