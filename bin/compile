@@ -1,27 +1,8 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
-#config variables
-DBUS_DIR = "/app/dbus-lib"
-
-echo "Compiling dbus"
-
-#fail fast
-set -e
-
-#extract dbus
-tar xf "/app/dbus-1.8.0.tar.gz"
-
-mkdir DBUS_DIR
-cd dbus-1.8.0
-
-echo "Current directory: $(pwd)"
-echo "Running configure"
-
-./configure --prefix=DBUS_DIR
-make
-make install
-
-cd ..
-rm -rf dbus-1.8.0
-
+echo "-----> Installing dbus 1.8.0"
+cd $1
+curl http://s3-us-west-2.amazonaws.com/tmpxkm/dbus.tar.gz -s -O
+mkdir -p vendor/dbus
+tar -C vendor/dbus -xf dbus.tar.gz

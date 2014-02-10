@@ -1,9 +1,5 @@
-#/bin/sh
+#!/bin/sh
 
 
-if [ -f "/app/dbus-1.8.0.tar.gz" ]; then
-    echo "DBUS found"
-else
-    echo "dbus-1.8.0.tar.gz required in home directory" && exit 1
-fi
-
+echo "dbus 1.8.0"
+exit 0
