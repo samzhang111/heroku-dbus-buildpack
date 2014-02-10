@@ -7,8 +7,3 @@ else
     echo "dbus-1.8.0.tar.gz required in home directory" && exit 1
 fi
 
-if [ -d "/app/dbus-python-0.84.0" ]; then
-    echo "DBUS-python found" && exit 0
-else
-    echo "dbus-python-0.84.0 required in home directory" && exit 1
-fi
