@@ -1,8 +1,20 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
-echo "-----> Installing dbus 1.8.0"
-cd $1
-curl http://s3-us-west-2.amazonaws.com/tmpxkm/dbus.tar.gz -s -O
-mkdir -p vendor/dbus
-tar -C vendor/dbus -xf dbus.tar.gz
+echo "-----> Installing dbus"
+fakesu apt-get install libdbus-1-dev
+echo "-----> Installing dbus-glib"
+fakesu apt-get install dbus-glib-1-dev
+
+echo "-----> Downloading python-dbus"
+wget http://dbus.freedesktop.org/releases/dbus-python/dbus-python-1.2.0.tar.gz
+echo "-----> Extracting python-dbus"
+tar xf dbus-python-1.2.0.tar.gz
+cd dbus-python-1.2.0
+
+echo "-----> Configuring python-dbus"
+fakesu ./configure
+echo "-----> Making python-dbus"
+fakesu make
+echo "-----> Installing python-dbus"
+fakesu make install
