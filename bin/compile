@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
+echo "-----> Entering fakesu"
+fakesu
+
 echo "-----> Installing dbus"
-fakesu apt-get install libdbus-1-dev
+apt-get install libdbus-1-dev
 echo "-----> Installing dbus-glib"
-fakesu apt-get install dbus-glib-1-dev
+apt-get install dbus-glib-1-dev
 
 echo "-----> Downloading python-dbus"
 wget http://dbus.freedesktop.org/releases/dbus-python/dbus-python-1.2.0.tar.gz
@@ -18,3 +21,5 @@ echo "-----> Making python-dbus"
 fakesu make
 echo "-----> Installing python-dbus"
 fakesu make install
+
+echo "$(pwd)"
